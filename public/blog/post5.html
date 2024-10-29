@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="../../_rbbDev/favicon/rbbLogo.png" />
+
+		<title>Blog - Post #5</title>
+
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="../../_rbbDev/extRefs/prism/prism.css">
+        
+	</head>
+
+	<body>
+	<div style="text-align:center; margin-bottom:5px;"><a href="./" style="background-color:#BDBDBD;">back to blog list</a></div>
+	<div class="container-fluid wrapper">
+
+    <p>
+      <em><strong>Live Demo:</strong></em>
+      <a class="btn btn-success" href="../resume" target="_blank">Click on icons at top of page</a> </p>
+  <p>
+      <em>
+           <strong>Problem:</strong></em> Need to provide user with PDF document of what the user sees on the website.</p>
+  <p>
+      <em>
+           <strong>Situation:</strong></em> An HTML website is the best vehicle to deliver content and information to Internet users, IMO, however there exists many cases where users may need the content in a different format like PDF or PNG. Now, in comes an open source project to the rescue:
+      <a href="http://wkhtmltopdf.org/">http://wkhtmltopdf.org</a> .</p>
+  <p>
+      <em>
+           <strong>Overall Design:</strong></em> Create Powershell script to execute wkHTMLtoPDF (and wkHTMLtoIMAGE) and save output in local directory then use Powershell with SharePoint snapin to upload the docs to a SharePoint library. Run the Powershell script on a scheduled task to run multiple times a day so when a user clicks on a link on the website they can download a PDF (or PNG) whose content exactly matches that of the website’s content. </p>
+  <p>
+      <em>
+           <strong>Powershell script:</strong></em><a href="./Lists/Posts/Attachments/5/PS_Script.ps1txt" target="_blank">PS_Script.ps1</a><br/> </p>
+  <pre class="line-numbers" data-src="./Lists/Posts/Attachments/5/PS_Script.ps1txt" style="max-height: 500px;">
+     </pre>
+  <p>Overall script is: (A) setting arguments to pass to wkhtmltopdf.exe and to wkhtmltoimage.exe, (B) start the processes for the executables, (C) those processes will deposit the PDF and PNG of http://rickb.org/resume into a directory, (D) then it uses SharePoint objects to upload the files to a document library.</p>
+  <p>All we need to do is run the script with a scheduled task and the docs will be synced with the website every few hours.</p>
+  <br/>
+  <img src="./Lists/Posts/Attachments/5/task.png" alt="" style="border: 1px solid #cccccc;" />
+  <p>&#160;</p>
+  <p>
+      <em><strong>End result:</strong></em><br/> User will click on some link/icon and they can download a PDF or PNG of exactly the same content that is on your website.<br/><img src="./Lists/Posts/Attachments/5/linkToDoc.png" alt="" style="border: 1px solid #cccccc;" /> </p>   
+
+	</div>
+    <script src="../../_rbbDev/extRefs/prism/prism.js"></script>
+	</body>
+</html>

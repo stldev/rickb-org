@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Bachelor Games Choice</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="shortcut icon" href="../../../_rbbDev/favicon/rbbLogo.png" />
+
+	<script defer src="/__/firebase/4.10.1/firebase-app.js"></script>
+	<script defer src="/__/firebase/4.10.1/firebase-database.js"></script>
+	<script defer src="/__/firebase/init.js"></script>
+
+</head>
+<body>
+
+<div id="Results1">
+	<p>loading...</p>
+</div> 
+
+<hr />
+
+<div id="ChartDiv1" style="height:435px;"></div>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.12/amcharts.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.12/pie.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.12/themes/light.js"></script>
+
+<script type="text/javascript">
+
+document.addEventListener('DOMContentLoaded', function () {
+    firebase.database().ref('/bachelorChoice').on('value', snapshot => {        
+
+	var aryResults1 = [];
+	$(snapshot.val()).each(function (i, e) {
+		aryResults1.push(e.UserChoice);
+	});
+	createPieChart(compressArray(aryResults1));
+	$("#Results1 p").hide();
+	$("#Results1").append("<br />Total count: " + snapshot.val().length);
+
+	});
+});
+
+function createPieChart(aryData) {
+console.log(aryData);
+	AmCharts.makeChart("ChartDiv1", {
+		"type" : "pie",
+		"dataProvider" : aryData,
+		"valueField" : "count",
+		"titleField" : "value",
+		"outlineAlpha" : 0.4,
+		"depth3D" : 15,
+		"balloonText" : "[[title]]<br><span style='font-size:14px'>" +
+		"<b>[[value]]</b> ([[percents]]%)</span>",
+		"angle" : 30
+	});
+}
+
+function compressArray(original) { // source: //gist.github.com/ralphcrisostomo/3141412
+	var compressed = [];
+	var copy = original.slice(0);
+	for (var i = 0; i < original.length; i++) {
+		var myCount = 0;
+		for (var w = 0; w < copy.length; w++) {
+			if (original[i] == copy[w]) {
+				myCount++;
+				delete copy[w];
+			}
+		}
+		if (myCount > 0) {
+			var a = new Object();
+			a.value = original[i];
+			a.count = myCount;
+			compressed.push(a);
+		}
+	}
+	return compressed;
+}
+
+</script>
+
+</body>
+</html>

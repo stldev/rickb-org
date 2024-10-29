@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="../../_rbbDev/favicon/rbbLogo.png" />
+
+		<title>Blog - Post #2</title>
+
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="../../_rbbDev/extRefs/prism/prism.css">
+        
+	
+	</head>
+
+	<body>
+	<div style="text-align:center; margin-bottom:5px;"><a href="./" style="background-color:#BDBDBD;">back to blog list</a></div>
+	<div class="container-fluid wrapper">
+
+        <h1>Graceful Shutdown of All Guest OS and Host in Power Failure</h2>
+            <p>Sunday, March 08, 2015</p>
+                <p>
+                    <em> 
+                     <strong>Problem:</strong></em> Need to have graceful shutdown of home server(s) in the event of a power failure.</p>
+                <p>
+                    <em> 
+                     <strong>Situation:</strong></em> Let me describe the system: Servers are local instances (on-premise).
+                    <a href="//my.vmware.com/web/vmware/evalcenter?p=free-esxi5&amp;lp=default" target="_blank">ESXi 5.5, a.k.a. Hypervisor,</a> ($0) on bare metal, on top of that there are virtual machines (VM). A VM domain controller/database server and a VM web-front-end server. Here is network diagram of the system:<br/><img src="./Lists/Posts/Attachments/2/NetDiagram1.PNG" alt="" style="border: 1px solid #cccccc; width: 85%;" /><br/>The HOST and GUESTS are always on. The LAPTOP is asleep 90% of the time. The Router and Hypervisor are plugged into a $50
+                    <a href="//www.amazon.com/gp/product/B0019804U8/ref=oh_aui_detailpage_o00_s00" target="_blank">APC Power Supply Unit (PSU)</a>. The red line in the diagram describes a USB connection from PSU to the Domain Controller (DC). The PSU came with free software called &quot;PowerChute&quot; which can be used to communicate information about the PSU to machine that PowerChute is installed on (the DC in this case). PowerChute has a service that is always running:<br/>
+                    <img src="./Lists/Posts/Attachments/2/servicesDC1.PNG" alt="" style="border: 1px solid #cccccc; width: 90%;" /> </p>
+                <p>
+                    <em>
+                     <strong>PowerChute:</strong></em> Why not just use PowerChute to do the graceful shutdown process? PowerChute can shutdown the machine that is connected to the PSU by USB. However in this case I need to shutdown other machines as well. And I want to shutdown Hypervisor which does not have an OS that PowerChute can be installed on. </p>
+                <p>
+                    <em>
+                     <strong>Thought-Process:</strong></em> What I want to have happen is first shutdown the WFE and DC and then shutdown Hypervisor. I can&#39;t shutdown Hypervisor until it is put in Maintanence Mode (MM), MM cannot be executed until all VMs are shutdown:
+                    <br/>
+                    <img src="./Lists/Posts/Attachments/2/vSphere1.png" alt="" style="border: 1px solid #cccccc; width: 90%;" />
+                    <br/> This means I cannot use a command from WFE or DC to put Hypervisor in MM. It has to come from another machine, so in comes the LAPTOP. There is a laptop on the network that sleeps most of the day. </p>
+                <p>
+                    <em>
+                     <strong>Process Flow (Overview):</strong></em> So let&#39;s use the laptop to do the work. PowerChute detects power failure and notifies the DC. The DC tells the LAPTOP to wakeup. LAPTOP wakes up and shuts down the DC and the WFE, then it puts Hypervisor in MM and shuts it down as well. </p>
+                <p>
+                    <em> 
+                     <strong>Flow Chart:</strong></em>
+                    <a href="./Lists/Posts/Attachments/2/flowChart1.PNG" target="_blank">Process Flow</a></p>
+                <p>
+                    <em><strong>Process Flow (Detailed):</strong></em> PowerChute detects power failure and, by default, logs an event into the Application Event Log of the DC:
+                    <br/>
+                    <img src="./Lists/Posts/Attachments/2/EvtVwr_DC.PNG" alt="" style="border: 1px solid #cccccc; width: 90%;" />
+                    <br/> We have an Event Viewer Task on DC that &quot;listens&quot; for EVENT ID: 174. When found we fire an Executable (task1.EXE) that tries to wake up the LAPTOP and log an event into its System Event Log of EVENT ID: 9876:
+                    <br/>
+                    <img src="./Lists/Posts/Attachments/2/EvtVwr_laptop.PNG" alt="" style="border: 1px solid #cccccc; width: 90%;" />
+                    <br/> There is an Event Viewer Task on the LAPTOP that is &quot;listening&quot; for 9876, when found it executes a Powershell script (task2.ps1). That script is responsible for shutting down DC and WFE and, putting the HOST in MM, and then shutting down Hypervisor. </p>
+                <p>
+                    <em>
+                     <strong>Task1.EXE:</strong></em> This is a simple .NET console app. The WakeFunction method comes from a
+                    <a href="//www.codeproject.com/Articles/5315/Wake-On-Lan-sample-for-C" target="_blank">solution on CodeProject</a>. So we use the WakeFunction to send a Magic Packet to wake up LAPTOP. We start pinging LAPTOP to make sure it is awake. Once awake we use WritePowerFailEvent method to write an entry into the event log of LAPTOP.
+                    <br/>
+                    <a href="./Lists/Posts/Attachments/2/task1.cs" target="_blank">
+                     <strong>TASK1.CS</strong></a><br/> </p>
+                <pre class="line-numbers" data-src="./Lists/Posts/Attachments/2/task1.cs" style="max-height: 400px;">
+               </pre>
+                <p>&#160;</p>
+                <p>
+                    <em><strong>Task2.PS1:</strong></em> This is a simple Powershell script. Shuts down WFE and DC using standard PS commands. Then it uses PUTTY to connect to Hypervisor and puts the HOST into MM and then shuts it down.
+                    <br/>
+                    <a href="./Lists/Posts/Attachments/2/task2.ps1txt" target="_blank">
+                     <strong>TASK2.PS1</strong></a><br/> </p>
+                <pre class="line-numbers" data-src="./Lists/Posts/Attachments/2/task2.ps1txt" style="max-height: 400px;">
+               </pre>
+                <br/>
+                <a href="./Lists/Posts/Attachments/2/puttyCfg.txt" target="_blank">
+                  <strong>PUTTYCFG.TXT</strong></a><br/>
+                <pre class="line-numbers" data-src="./Lists/Posts/Attachments/2/puttyCfg.txt" style="max-height: 400px;">
+               </pre>
+                
+
+	</div>
+    <script src="../../_rbbDev/extRefs/prism/prism.js"></script>
+	</body>
+</html>

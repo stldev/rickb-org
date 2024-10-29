@@ -1,0 +1,123 @@
+﻿
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Rick &amp; Alex</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script>
+        document.documentElement.className = document.documentElement.className.replace(/(\s|^)no-js(\s|$)/, '$1' + 'js' + '$2');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link href="main.css" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Lato:400,700,400italic|Libre+Baskerville:400,400italic" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.css">
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <style>
+        .page-header,
+        .person--wrapper {
+            background: #088A08;
+        }
+        a {
+            color: #4ae2af;
+        }
+        .vevent a:hover {
+            color: #4ae2af;
+            color: hsl(160, 72%, 30%);
+        }
+        .form-holder .submit > input:hover {
+            color: #4ae2af;
+        }
+        .page-header,
+        .subpage .fn,
+        .vevent > time {
+            font-family: Baskerville, 'Libre Baskerville', serif
+        }
+        .subpage .notes,
+        .vevent {
+            font-family: 'Lato', sans-serif
+        }
+		.subpage .info {
+			vertical-align: middle;
+		}	
+		.LinkBtn {
+			margin: 5px;
+		}
+    </style>
+      
+</head>
+
+<body class="home">
+    <div style="text-align:center; font-size: small;"><a href="/">back to rickb.org</a></div>
+    <header class="site-header">
+        <div class="constraint">
+            <a href="./index.html" id="logo">Rick <span class="amp">&amp;</span> Alex</a>
+            <a href="#navigation" class="navigation-toggle" title="Show the navigation menu"></a>
+            <div class="navigation-wrapper" id="navigation">
+                <ul class="navigation main-nav" role="navigation">
+                    <li><a href="./details.html">Event Details</a>
+                    </li>
+                    <li><a href="./stayAndPlay.html">Stay &amp; Play</a>
+                    </li>						
+                    <li><a href="./party.html">The Wedding Party</a>
+                    </li>
+                    <li><a href="./registry.html">Registry</a>
+                    </li>
+				
+                </ul>
+            </div>
+        </div>
+    </header>
+    <h1 class="page-header page-header--2-lines">
+  
+  <span class="title">Event<br>Details</span>
+</h1>
+    <div class="subpage-items">
+        <div class="vevent">
+            <h2 class="summary">Ceremony</h2>
+            <time>Saturday, November 8, 2014,  5:00PM</time>
+            <p class="location">St. Nicholas Greek Othodox Church
+                <br>4967 Forest Park Ave.
+                <br>St. Louis, MO 63108</p>
+			<br />
+			<div style="padding:5px; margin:5px auto 5px auto; border:2px solid #1A5029; width:55%;">
+				<h4>Directions</h4>
+				<a class="LinkBtn" href="ChurchParking.png">Overview Pic</a> 
+				<a class="LinkBtn" href="//www.google.com/maps/place/St+Nicholas+Greek+Orthodox+Church/@38.639868,-90.264627,17z/data=!3m1!4b1!4m2!3m1!1s0x87d8b52653629321:0x8dc7496c0e59d4eb">Google Map</a> 
+				<a class="LinkBtn" href="http://www.sngoc.org/content/contact-info-directions">Website</a>
+			</div>				
+        </div>
+        <div class="vevent">
+            <h2 class="summary">Reception</h2>
+            <time>Saturday, November 8, 2014,  6:30PM</time>
+            <p class="location">Kemoll&#39;s Downtown
+                <br>One Metropolitan Square
+				<br>40th floor
+                <br>211 North Broadway
+				<br>St. Louis, MO 63102</p>
+            <p class="notes">Dinner, drinks, and dancing with the newlyweds!</p>
+			<br />
+			<div style="padding:5px; margin:5px auto 5px auto; background-color:#1A5029; width:55%;">
+				<h4>Directions</h4>
+				<a class="LinkBtn" href="KemollsParking.png">Overview Pic</a> 
+				<a class="LinkBtn" href="//www.google.com/maps/place/Kemoll%27s/@38.6265345,-90.1869102,18z/data=!4m2!3m1!1s0x0:0x859d137113002157">Google Map</a> 
+				<a class="LinkBtn" href="Driving_Directions_Kemolls.doc">Text</a>
+			</div>
+        </div>
+    </div>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+    <script src="./main.js"></script>
+	<script>
+	$(function() {
+		$(".LinkBtn").button().click(function( event ) {
+            // do nothing
+        });
+	});
+	</script>	
+</body>
+
+</html>

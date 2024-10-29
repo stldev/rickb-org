@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>D3 in SharePoint</title>
+
+<link rel="shortcut icon" href="../../../_rbbDev/favicon/rbbLogo.png" />
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css" />
+<link href="jumbotron-narrow.css" rel="stylesheet" />
+
+<script defer src="/__/firebase/4.10.1/firebase-app.js"></script>
+<script defer src="/__/firebase/4.10.1/firebase-database.js"></script>
+<script defer src="/__/firebase/init.js"></script>
+
+</head>
+<body>
+
+<div class="container">
+<div class="jumbotron">
+	<div id="ShowMsg" style="display:none; color:red;"></div>
+	<img src="../../../_rbbDev/images/logo/01/logoFull_big.png" 
+		style="margin: 0 auto; max-height:125px;" class="img-responsive" alt="" />
+	<br />
+	<p class="lead">View proportion of Windows OS versions.</p>
+	<div id="LegendLabelGrp">
+		<h2>
+			<span id="LegendWin10" class="label label-default" 
+				style="background-color:#A2AD00;">Win10 <span>...</span></span>
+			<span id="LegendWin08" class="label label-default" 
+				style="background-color:#4B92DB;">Win8 <span>...</span></span>
+			<span id="LegendWin07" class="label label-default" 
+				style="background-color:#8E908F;">Win7 <span>...</span></span>
+			<span id="LegendWin06" class="label label-default" 
+				style="background-color:#DC5034;">WinXP <span>...</span></span>
+		</h2> 
+	</div>
+	<div id="DonutChartDivWrapper"></div>
+	<span><span class="glyphicon glyphicon-info-sign">
+		</span> Available datasets (click on a date)</span>
+	<div id="AllDatasetsDiv" class="row" style="display:flex;">
+		<div class="col-xs-12">
+		<div class="btn-group btn-group-justified">
+			<a href="javascript:;" disabled="disabled" class="btn btn-default" 
+				style="width:1%; cursor:default;">Office 1
+			<br />STL
+			</a>
+			<a data-itemdate="10/23/2014" href="javascript:;" 
+				onclick="winOsObj.fillDonut(this);" class="btn btn-default active">10/23<br />(2014)</a>
+			<a data-itemdate="11/19/2014" href="javascript:;" 
+				onclick="winOsObj.fillDonut(this);" class="btn btn-default">11/19<br />(2014)</a>
+		</div>
+		<hr />
+		<div class="btn-group btn-group-justified">
+			<a href="javascript:;" disabled="disabled" 
+				class="btn btn-default" style="width:1%; cursor:default;">Office 2
+			<br />NY
+			</a>			
+			<a data-itemdate="11/25/2014" href="javascript:;" 
+				onclick="winOsObj.fillDonut(this);" class="btn btn-default">11/25<br />(2014)</a> 
+			<a data-itemdate="11/29/2014" href="javascript:;" 
+				onclick="winOsObj.fillDonut(this);" class="btn btn-default">11/29<br />(2014)</a> 
+		</div>
+		<hr />
+		<div class="btn-group btn-group-justified">
+			<a href="javascript:;" disabled="disabled" 
+				class="btn btn-default" style="width:2%; cursor:default;">Office 3
+			<br />LA
+			</a>			
+			<a data-itemdate="12/05/2014" href="javascript:;" 
+				onclick="winOsObj.fillDonut(this);" class="btn btn-default">12/05<br />(2014)</a> 
+			<a data-itemdate="12/08/2014" href="javascript:;" 
+				onclick="winOsObj.fillDonut(this);" class="btn btn-default">12/08<br />(2014)</a>
+			<a data-itemdate="12/10/2014" href="javascript:;" 
+				onclick="winOsObj.fillDonut(this);" class="btn btn-default">12/10<br />(2014)</a>
+			<a data-itemdate="12/15/2014" href="javascript:;" 
+				onclick="winOsObj.fillDonut(this);" class="btn btn-default">12/15<br />(2014)</a> 				
+		</div>
+		</div>			
+	</div>
+</div>
+    <footer class="footer"> 
+	<p style="text-align:center;">
+		&copy; rbbDev <script>document.write(new Date().getFullYear());</script></p>
+    </footer>
+</div>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.0/d3.min.js"></script>
+<script src="./Donut3D.js"></script>
+	
+<script>
+
+var winOsObj = function () {
+	"use strict";
+
+	var aryDataTmp = [];
+	var aryFilteredTmp = [];
+	var svg = d3.select("#DonutChartDivWrapper").append("svg").attr("height", 300);
+	svg.append("g").attr("id", "winOsCountsDonut");
+
+	function getDateNumbersForDonut(ele) {
+
+		$($(ele).parent().parent().find("a")).each(function (i, e) {
+			$(e).removeClass("active");
+		});
+
+		$(ele).addClass("active");
+
+		aryFilteredTmp = aryDataTmp.filter(filterArray);
+		Donut3D.transition("winOsCountsDonut", aryFilteredTmp, 130, 100, 30, 0.4);
+		setCountOnLegend();
+	}
+
+	function filterArray(ele) {
+		return ele.strDate === $(".btn-group .active").attr("data-itemdate");
+	}
+
+	function setCountOnLegend() {
+		$(aryFilteredTmp).each(function (i, e) {
+			$("#LegendWin" + e.objVer + " span").html("(" + e.objCount + ")");
+		});
+	}
+
+	function init(data) {	
+		$(data).each(function (i, e) {
+
+			switch (e.objVer) {
+			case "10":
+				e.color = "#A2AD00"; // green
+				break;
+			case "08":
+				e.color = "#4B92DB"; // blue
+				break;
+			case "07":
+				e.color = "#8E908F"; // grey
+				break;
+			case "06":
+				e.color = "#DC5034"; // red
+				break;
+			}
+
+			e.label = "ie" + e.objVer;
+			e.value = parseInt(e.objCount, 10);
+			e.BrowserVerVal = parseInt(e.objVer, 10);
+			aryDataTmp.push(e);
+		});
+
+		aryDataTmp.sort(function (a, b) {
+			return a.BrowserVerVal - b.BrowserVerVal
+		});
+
+		aryFilteredTmp = aryDataTmp.filter(filterArray);
+		Donut3D.draw("winOsCountsDonut", aryFilteredTmp, 150, 150, 130, 100, 30, 0.4);
+		setCountOnLegend();				
+	}
+
+	return {
+		main : init,
+		fillDonut : getDateNumbersForDonut
+	};
+
+}();
+
+document.addEventListener('DOMContentLoaded', function () {
+    firebase.database().ref('/d3SharePoint').on('value', snapshot => {        
+ 		winOsObj.main(snapshot.val());
+	});
+});
+
+</script>
+
+</body>
+</html>

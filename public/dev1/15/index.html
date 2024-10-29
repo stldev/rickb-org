@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="DietDataApp">
+
+	<head>
+		<title>Diet Data 4.0 - (ng1.5)</title>
+
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="shortcut icon" href="../../../_rbbDev/favicon/rbbLogo.png" />
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/darkly/bootstrap.min.css" />
+		<link href="app.css" rel="stylesheet" />
+
+		<script defer src="/__/firebase/4.10.1/firebase-app.js"></script>
+		<script defer src="/__/firebase/4.10.1/firebase-database.js"></script>
+		<script defer src="/__/firebase/init.js"></script>
+		
+	</head>
+
+	<body>
+
+		<div class="container-fluid">
+			<div id="Header" ui-view="header" style="padding:10px 0 0 0;">
+				Loading...
+			</div>
+			<div id="Content" ui-view="content">
+				Loading...
+			</div>
+		</div>	
+
+		<input style="display:none !important;" type="hidden" name="__REQUESTDIGEST" id="__REQUESTDIGEST" value="someValue" />
+
+		<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.0/amcharts.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.0/serial.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.0/themes/dark.js"></script>
+		<script src="./amChartsDirective.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.11.2/lodash.min.js"></script>
+		<script src="app.js"></script>
+
+	</body>
+
+</html>

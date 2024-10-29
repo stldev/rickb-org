@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="../../_rbbDev/favicon/rbbLogo.png" />
+
+		<title>Blog - Post #6</title>
+
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="../../_rbbDev/extRefs/prism/prism.css">
+        
+	</head>
+
+	<body>
+	<div style="text-align:center; margin-bottom:5px;"><a href="./" style="background-color:#BDBDBD;">back to blog list</a></div>
+	<div class="container-fluid wrapper">
+
+        <p>
+            <em> 
+               <strong>Live Demo:</strong></em><a class="btn btn-success" href="../dev1/03/index.html" target="_blank">3D Donut Chart</a> </p>
+          <p>
+            <em> 
+               <strong>Problem:</strong></em> Need to visualize data in animated chart on webpage. </p>
+          <p>
+            <em> 
+               <strong>Situation:</strong></em> This is just to showcase the awesome JavaScript library of 
+            <a href="//d3js.org/">D3 (Data-Driven Documents)</a> . </p>
+          <p>
+            <em> 
+               <strong>App Flow:</strong></em> We have some HTML container divs. During Page Load the JavaScript object &quot;winOsObj&quot; (line 90) is defined and immediately executed. winOsObj fetches the data from a SharePoint list (DevList03) then does some data manipulation, finally it draws the 3D Donut chart using D3&#39;s draw function (line 157).</p>
+          <p>
+            <em> 
+               <strong>Data store:</strong></em> SharePoint list (&quot;DevList03&quot;): 
+            <br/>
+            <img alt="SharePoint list" src="./Lists/Posts/Attachments/6/devList_03aaa.png" style="border: 1px solid #cccccc; width: 90%;"/> </p>
+          <p>
+            <em> 
+               <strong>HTML/JS code:</strong></em><a href="../dev1/03/index.html" target="_blank">index.html</a><br/> </p>
+          <pre class="line-numbers" data-src="../dev1/03/index.html" style="max-height: 500px;">
+          </pre>      
+
+	</div>
+    <script src="../../_rbbDev/extRefs/prism/prism.js"></script>
+	</body>
+</html>

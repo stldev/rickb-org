@@ -1,0 +1,3 @@
+stop-computer -computername <yourWFEComputerName> -force
+stop-computer -computername <yourDCComputerName> -force
+putty.exe -ssh <yourUserName>@<yourIPaddressToVMwareHost> -pw <yourPassword> -m <filePath>\puttyCfg.txt

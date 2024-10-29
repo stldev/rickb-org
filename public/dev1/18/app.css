@@ -1,0 +1,110 @@
+.animate-repeat {
+  line-height:30px;
+  list-style:none;
+  box-sizing:border-box;
+}
+
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+  transition:all linear 1.0s;
+  -webkit-transition:all linear 1.0s;
+  -moz-transition:all linear 1.0s;
+}
+
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+  opacity:0;
+  max-height:0;
+}
+
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+  opacity:1;
+  max-height:30px;
+}
+
+#ScheduleTable {
+  width: 100%;
+  border-spacing: 0; 
+  border-radius: 22px;
+}
+
+#ScheduleTable td, #ScheduleTable th {
+  padding: 4px;
+  margin: 4px;
+  border: 1px solid red;
+  text-align: center;
+  white-space: nowrap;
+}
+
+#ScheduleTable th {
+  background-color : white;
+  color : black;
+}
+
+#ScheduleTable .staticTableHeader {
+  vertical-align : bottom;
+  background-color : red;
+  color : white;
+}
+
+.fa.fa-question-circle-o {
+  color: cyan;
+}
+
+.fa.fa-times {
+  color: red;
+}
+
+.fa.fa-check {
+  color: green;
+}
+
+.fa.fa-trophy {
+  color: yellow;
+}
+
+.errorCard {
+  background-color:#000; 
+  cursor:pointer;
+}
+
+.highlightRow {
+  background-color:#4682b4; 
+}
+
+.showModal {
+  display:block;
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+#Footer {
+  position:fixed; 
+  bottom:0; 
+  left:0; 
+  z-index:999; 
+  width:100%; 
+  text-align:center; 
+  background-color:#aaa; 
+  border-top:1px solid 
+  orange; 
+  padding:5px;
+}
+
+.playerCardDiv {
+  border-radius: 25px; 
+  border: 2px solid #3498db; 
+  padding:5px; 
+  margin:5px; 
+  background-color:#000;
+}
+
+#TooltipTable td {
+  border: none;
+}

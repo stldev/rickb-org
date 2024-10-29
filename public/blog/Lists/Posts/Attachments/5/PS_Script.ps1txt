@@ -1,0 +1,32 @@
+Add-PSSnapin "Microsoft.SharePoint.PowerShell" -ErrorAction SilentlyContinue
+
+$WrkDir = "<FilePath>\wkhtmltopdf\bin"
+$a1 = @("--user-style-sheet resume1.css","--quality 50","--disable-javascript","http://rickb.org/resume","resume.png")
+$a2 = @("--viewport-size 1024x768","--user-style-sheet resume1.css","--disable-javascript","http://rickb.org/resume","resume.pdf")
+
+Start-Process wkhtmltoimage.exe -ArgumentList $a1 -workingdirectory $WrkDir | Wait-Process
+Start-Process wkhtmltopdf.exe -ArgumentList $a2 -workingdirectory $WrkDir | Wait-Process
+
+# Set the variables
+$WebURL = "http://yourWebsite"
+$DocLibName = "SomeDocLibrary"
+$FilePath1 = "<FilePath>\wkhtmltopdf\bin\resume.png"
+$FilePath2 = "<FilePath>\wkhtmltopdf\bin\resume.pdf"
+ 
+# Get a variable that points to the folder
+$Web = Get-SPWeb $WebURL
+$List = $Web.GetFolder($DocLibName)
+$Files = $List.Files
+
+# Get just the name of the file from the whole path
+$FileName1 = $FilePath1.Substring($FilePath1.LastIndexOf("\")+1)
+$FileName2 = $FilePath2.Substring($FilePath2.LastIndexOf("\")+1)
+
+# Load the file into a variable
+$File1 = Get-ChildItem $FilePath1
+$File2 = Get-ChildItem $FilePath2
+
+# Upload it to SharePoint
+$Files.Add($DocLibName +"/" + $FileName1,$File1.OpenRead(),$true)
+$Files.Add($DocLibName +"/" + $FileName2,$File2.OpenRead(),$true)
+$web.Dispose()

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="../../_rbbDev/favicon/rbbLogo.png" />
+
+		<title>Blog - Post #1</title>
+
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="../../_rbbDev/extRefs/prism/prism.css">
+        
+	</head>
+
+	<body>
+	<div style="text-align:center; margin-bottom:5px;"><a href="./" style="background-color:#BDBDBD;">back to blog list</a></div>
+	<div class="container-fluid wrapper">
+
+            <p> 
+                    <em><strong>Live Demo:</strong></em> 
+                    <a class="btn btn-success" href="../dev1/02/index.html?choice=golf" target="_blank">Vote for Golf!</a> </p>
+                 <p> 
+                    <em><strong>Problem:</strong></em> Need to collect votes and show results to users. </p>
+                 <p> 
+                    <em><strong>Situation:</strong></em> Users will be notified of voting choices through email. Easiest voting process for user is to click button of desired choice directly in email to submit their vote. </p>
+                 <p> 
+                    <em><strong>Overall Design:</strong></em> Buttons in email will be links to a webpage. The links will have a query string parameter that matches their desired choice. When webpage is loading JavaScript will get the query string parameter (&quot;choice&quot;) value and store it in some data store. We can query the data store to get the votes and draw a graphical representation of the data. </p>
+                 <p> 
+                    <em><strong>Graphics:</strong></em> Pie chart from 
+                    <a href="//www.amcharts.com/" target="_blank">amCharts</a> </p>
+                 <p> 
+                    <em><strong>App flow:</strong></em> 
+                    <a href="./Lists/Posts/Attachments/1/Drawing1.png" target="_blank">Visio diagram</a></p>
+                 <p> 
+                    <em><strong>Data store:</strong></em> SharePoint list (&quot;BachPartySurvey&quot;): 
+                    <br/>
+                    <img alt="SharePoint list" src="./Lists/Posts/Attachments/1/bachPartyListCapture1.png" style="border: 1px solid #cccccc;"/> </p>
+                 <p> 
+                    <em><strong>HTML/JS code:</strong></em> 
+                    <a href="../dev1/02/index.html" target="_blank">index.html</a><br/> </p>
+                 <pre class="line-numbers" data-src="../dev1/02/index.html" style="max-height: 300px;">
+                 </pre>
+                 <p>&#160;</p>
+                 <p> 
+                    <em><strong>C# code:</strong></em> WCF service 
+                    <br/> </p>
+                 <pre class="line-numbers" data-src="./Lists/Posts/Attachments/1/csharpCode1.cs" style="max-height: 300px;">
+                 </pre>
+                 <p>&#160;</p>      
+   
+	</div>
+    <script src="../../_rbbDev/extRefs/prism/prism.js"></script>
+	</body>
+</html>

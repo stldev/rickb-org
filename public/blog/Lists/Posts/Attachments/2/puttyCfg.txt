@@ -1,0 +1,2 @@
+esxcli system maintenanceMode set -e true
+esxcli system shutdown poweroff -d 20 -r "power outage"

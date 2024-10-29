@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="../../_rbbDev/favicon/rbbLogo.png" />
+
+		<title>Blog - Post #4</title>
+
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="../../_rbbDev/extRefs/prism/prism.css">
+        
+	</head>
+
+	<body>
+	<div style="text-align:center; margin-bottom:5px;"><a href="./" style="background-color:#BDBDBD;">back to blog list</a></div>
+	<div class="container-fluid wrapper">
+
+        <p>
+            <em><strong>Problem:</strong></em> Need to query all Active Directory users from Linked Server in SQL Sever but number of user objects is over 900.</p>
+         <p>
+            <em><strong>Situation:</strong></em> If a query from a SQL Server Linked Server returns more than 900 records the query will result in an error. This is a built-in limitation of the Active Directory Linked Server Provider.</p>
+         <p>
+            <em><strong>Overall Design:</strong></em> Structure SQL query to loop through each letter of the alphabet and store results in a temporary table. This will allow you to get a maximum of 900 users per letter. This should work in most cases, except for very large organizations. </p>
+         <p>
+            <em> 
+               <strong>Active Directory Users:</strong></em><br/> In this example there are only 6 users but there could be thousands of users. They are all in the &quot;TestUsers1&quot; Organizational Unit (OU).<br/> 
+            <img src="./Lists/Posts/Attachments/4/OUview.png" alt="" style="border: 1px solid #cccccc;"/> </p>
+         <p>
+            <em> 
+               <strong>Linked Server and SQL Query results:</strong></em><br/> The userAccountControl values can be confusing, 
+            <a href="http://rajnishbhatia19.blogspot.com/2008/11/active-directory-useraccountcontrol.html" target="_blank">here is an article</a> laying out what each number means.<br/> 
+            <img src="./Lists/Posts/Attachments/4/sqlResults.png" alt="" style="border: 1px solid #cccccc;"/> </p>
+         <p>
+            <em><strong>SQL Code:</strong></em> 
+            <a href="./Lists/Posts/Attachments/4/LDAPqueryGetAllUsers.sql" target="_blank">LDAPqueryGetAllUsers.sql</a><br/> </p>
+         <pre class="line-numbers" data-src="./Lists/Posts/Attachments/4/LDAPqueryGetAllUsers.sql" style="max-height: 500px;">
+         </pre>
+         <p>Overall what this query does is: (A) create a temp table, (B) loop through all the letters of the alphabet, (C) in the loop it issues OPENQUERY to the TestUsers1 OU where the samaccountname starts with the given letter the loop is on, (D) the results are inserted to the temp table, (E) when the loop is complete it calls a SELECT on the temp table to display all of the records.</p>
+         <p>There are 26 letters in the English alphabet and you could get 900 users per letter that means, potentially, you could return 23,400 users in one OPENQUERY. However this maximum number is unlikely, as it is the case that user&#39;s name&#39;s beginning letter are not spread out evenly across the alphabet.</p>
+      
+   
+	</div>
+    <script src="../../_rbbDev/extRefs/prism/prism.js"></script>
+	</body>
+</html>
