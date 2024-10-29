@@ -1,1 +1,3 @@
 # rickb-org
+
+I describe myself as a Product Engineer. My concern is with how to help the vision of the product team get into the hands of the end users. The path I have found to be very good at helping turn the business vision into user's value is by following the agile manifesto's 12 principles. The 12 principles offer the guidance, but the specifics can vary a lot depending on how the team chooses to do the implementations. I care a great deal about providing good user experiences and fulfilling the business's vision, however there must be a balance struck between that and making sure the tech debt is paid off too.
