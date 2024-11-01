@@ -8,13 +8,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- update the version number as needed -->
-  <!-- <script defer src="/__/firebase/4.10.1/firebase-app.js"></script> -->
   <script defer src="/__/firebase/11.0.1/firebase-app-compat.js"></script>
   <!-- include only the Firebase features as you need -->
-  <!-- <script defer src="/__/firebase/4.10.1/firebase-database.js"></script> -->
+  <script defer src="/__/firebase/11.0.1/firebase-analytics-compat.js"></script>
   <script defer src="/__/firebase/11.0.1/firebase-database-compat.js"></script>
   <!-- initialize the SDK after all desired features are loaded -->
-  <!-- <script defer src="/__/firebase/init.js"></script> -->
   <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 
   <link rel="manifest" href="manifest.webmanifest">
@@ -73,6 +71,14 @@
       </div>
     </div>
   </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      firebase.analytics(); // call to activate
+      firebase
+        .analytics()
+        .logEvent(`rickb-home-${new Date().toLocaleString()}`);
+    });
+  </script>
 </body>
 
 </html>

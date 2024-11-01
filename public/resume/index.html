@@ -12,6 +12,14 @@
 
 	<title>Rick Barton - Web Developer</title>
 
+	<!-- update the version number as needed -->
+	<script defer src="/__/firebase/11.0.1/firebase-app-compat.js"></script>
+	<!-- include only the Firebase features as you need -->
+	<script defer src="/__/firebase/11.0.1/firebase-analytics-compat.js"></script>
+	<script defer src="/__/firebase/11.0.1/firebase-database-compat.js"></script>
+	<!-- initialize the SDK after all desired features are loaded -->
+	<script defer src="/__/firebase/init.js?useEmulator=true"></script>
+
 	<!-- Styles
 		================================================== -->
 	<link rel="stylesheet" type="text/css" media="screen" href="//fonts.googleapis.com/css?family=Open+Sans:400,600">
@@ -560,6 +568,13 @@
 	<script src="../../_rbbDev/extRefs/wrapbootstrap/resume/js/derek.js"></script>
 
 	<script>
+
+		document.addEventListener("DOMContentLoaded", function () {
+			firebase.analytics(); // call to activate
+			firebase
+				.analytics()
+				.logEvent(`rickb-home-${new Date().toLocaleString()}`);
+		});
 
 		function getApprovedBlogPosts() {
 			// function is called in here:
