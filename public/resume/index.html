@@ -35,17 +35,6 @@
 	<link rel="stylesheet" type="text/css" media="screen"
 		href="../../_rbbDev/extRefs/wrapbootstrap/resume/css/custom.css">
 
-	<!-- <link rel="stylesheet" type="text/css" media="screen" href="/resume/Pages/HtmlToPdf.css"> TODO -->
-
-	<!-- IE support
-		================================================== -->
-	<!--[if lt IE 9]>
-			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-			<script src="../../_rbbDev/extRefs/wrapbootstrap/resume/js/css3-mediaqueries.js"></script>
-		<![endif]-->
-	<!--[if IE 7]>
-			<link rel="stylesheet" href="../../_rbbDev/extRefs/wrapbootstrap/resume/css/font-awesome-ie7.min.css">
-		<![endif]-->
 </head>
 
 <body>
@@ -491,12 +480,7 @@
 		</div>
 		<!-- end of resume -->
 
-		<!-- Contact 
-				================================================== -->
-		<h3 class="my-caption">Location</h3>
-
-		<!-- google map container -->
-		<div id="my-location"></div>
+		<!-- Contact  -->
 
 		<div class="row-fluid contact">
 
@@ -556,12 +540,16 @@
 			</div>
 
 		</div>
+
+		<h3 class="my-caption">Location</h3>
+
+		<img style="width: 100%;" src="./map.png" />
+
 		<!-- end of contact -->
 
 	</div>
 	<!-- end of container -->
 
-	<script src="//maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
 	<script src="../../_rbbDev/extRefs/wrapbootstrap/resume/js/jquery-1.9.1.min.js"></script>
 	<script src="../../_rbbDev/extRefs/wrapbootstrap/resume/js/jquery.masonry.min.js"></script>
 	<script src="../../_rbbDev/extRefs/wrapbootstrap/resume/js/bootstrap.min.js"></script>
@@ -575,15 +563,6 @@
 				.analytics()
 				.logEvent(`rickb-home-${new Date().toLocaleString()}`);
 		});
-
-		function getApprovedBlogPosts() {
-			// function is called in here:
-			// _rbbDev\extRefs\wrapbootstrap\resume\js\derek.js
-			setTimeout(function () {
-				// $("#portfolio").empty();
-				init_masonry();
-			}, 10);
-		}
 
 	</script>
 
