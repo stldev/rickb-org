@@ -1,574 +1,464 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Rick Barton resume">
-	<meta name="keywords" content="Rick Barton resume">
-	<meta name="author" content="Rick Barton">
-	<link rel="shortcut icon" href="../../_rbbDev/favicon/rbbLogo.png" />
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="description"
+		content="Richard Barton — Platform Architect specializing in Microsoft Azure, cloud architecture, Infrastructure as Code, and engineering leadership.">
+	<title>Richard Barton - Platform Architect</title>
+	<style>
+		:root {
+			--ink: #273441;
+			--muted: #667888;
+			--accent: #287f99;
+			--line: #e0e8ec;
+			--bg: #f5f7f8;
+			--paper: #fff
+		}
 
-	<title>Rick Barton - Full Stack Engineer</title>
+		* {
+			box-sizing: border-box
+		}
 
-	<!-- update the version number as needed -->
-	<script defer src="/__/firebase/12.14.0/firebase-app-compat.js"></script>
-	<!-- include only the Firebase features as you need -->
-	<script defer src="/__/firebase/12.14.0/firebase-analytics-compat.js"></script>
-	<script defer src="/__/firebase/12.14.0/firebase-database-compat.js"></script>
-	<!-- initialize the SDK after all desired features are loaded -->
-	<script defer src="/__/firebase/init.js?useEmulator=true"></script>
+		html {
+			scroll-behavior: smooth
+		}
 
-	<!-- Styles
-		================================================== -->
-	<link rel="stylesheet" type="text/css" media="screen" href="//fonts.googleapis.com/css?family=Open+Sans:400,600">
-	<link rel="stylesheet" type="text/css" media="screen"
-		href="../../_rbbDev/extRefs/wrapbootstrap/resume/css/bootstrap.min.css">
+		body {
+			margin: 0;
+			background: var(--bg);
+			color: var(--ink);
+			font: 16px/1.65 'Segoe UI', Arial, sans-serif
+		}
 
-	<link rel="stylesheet" type="text/css" media="screen"
-		href="../../_rbbDev/extRefs/wrapbootstrap/resume/css/bootstrap-responsive.min.css">
-	<link rel="stylesheet" type="text/css" media="screen"
-		href="../../_rbbDev/extRefs/wrapbootstrap/resume/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" media="screen"
-		href="../../_rbbDev/extRefs/wrapbootstrap/resume/css/derek.css">
-	<link rel="stylesheet" type="text/css" media="screen"
-		href="../../_rbbDev/extRefs/wrapbootstrap/resume/css/custom.css">
+		a {
+			color: var(--accent);
+			text-decoration: none
+		}
 
+		a:hover {
+			text-decoration: underline
+		}
+
+		.site {
+			max-width: 1120px;
+			margin: 0 auto;
+			padding: 26px 28px 70px
+		}
+
+		.back {
+			display: inline-block;
+			margin-bottom: 20px;
+			font-size: 14px
+		}
+
+		.layout {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) 285px;
+			gap: 28px;
+			align-items: start
+		}
+
+		.main,
+		.sidebar {
+			background: var(--paper);
+			border: 1px solid var(--line);
+			border-radius: 4px
+		}
+
+		.main {
+			padding: 36px 42px
+		}
+
+		.sidebar {
+			padding: 28px 25px
+		}
+
+		h1 {
+			font-size: 38px;
+			font-weight: 400;
+			line-height: 1.15;
+			margin: 0 0 8px
+		}
+
+		h2 {
+			font-size: 23px;
+			font-weight: 400;
+			margin: 40px 0 18px;
+			border-bottom: 1px solid var(--line);
+			padding-bottom: 9px
+		}
+
+		h3 {
+			font-size: 19px;
+			margin: 0;
+			font-weight: 600;
+			line-height: 1.3
+		}
+
+		h4 {
+			font-size: 14px;
+			font-weight: 500;
+			color: var(--muted);
+			margin: 5px 0 12px
+		}
+
+		p {
+			margin: 8px 0 14px
+		}
+
+		.subtitle {
+			font-size: 18px;
+			color: var(--accent);
+			margin: 0 0 23px
+		}
+
+		.summary {
+			font-size: 15.5px
+		}
+
+		.downloads {
+			margin-top: 23px;
+			font-size: 14px
+		}
+
+		.downloads a {
+			display: inline-block;
+			border: 1px solid #bad6de;
+			padding: 5px 13px;
+			margin-left: 6px;
+			border-radius: 3px
+		}
+
+		.position {
+			padding: 5px 0 22px;
+			margin-bottom: 20px;
+			border-bottom: 1px solid var(--line)
+		}
+
+		.position:last-child {
+			border-bottom: 0
+		}
+
+		.position-heading {
+			display: flex;
+			justify-content: space-between;
+			align-items: baseline;
+			gap: 14px
+		}
+
+		.dates {
+			font-size: 13px;
+			white-space: nowrap;
+			color: var(--muted)
+		}
+
+		ul {
+			padding-left: 21px;
+			margin: 12px 0 0
+		}
+
+		li {
+			margin-bottom: 8px;
+			font-size: 14.5px
+		}
+
+		.compact {
+			padding-bottom: 13px;
+			margin-bottom: 15px
+		}
+
+		.compact p {
+			font-size: 14px;
+			margin: 6px 0
+		}
+
+		.side-section {
+			margin: 0 0 28px
+		}
+
+		.side-section h2 {
+			font-size: 18px;
+			margin: 0 0 13px
+		}
+
+		.side-section p,
+		.side-section li {
+			font-size: 14px
+		}
+
+		.side-section ul {
+			list-style: none;
+			padding: 0
+		}
+
+		.side-section li {
+			padding: 0 0 7px
+		}
+
+		.skill-label {
+			display: block;
+			font-weight: 600;
+			margin-top: 14px
+		}
+
+		.edu-item {
+			margin-bottom: 16px
+		}
+
+		.edu-item strong {
+			display: block
+		}
+
+		.edu-item small {
+			color: var(--muted)
+		}
+
+		.contact {
+			overflow-wrap: anywhere
+		}
+
+		@media(max-width:850px) {
+			.layout {
+				grid-template-columns: 1fr
+			}
+
+			.sidebar {
+				grid-row: 2
+			}
+
+			.main {
+				padding: 28px 24px
+			}
+
+			.site {
+				padding: 18px 14px 50px
+			}
+		}
+
+		@media(max-width:550px) {
+			h1 {
+				font-size: 31px
+			}
+
+			.position-heading {
+				display: block
+			}
+
+			.dates {
+				display: block;
+				margin-top: 4px
+			}
+
+			.downloads a {
+				margin-top: 6px
+			}
+		}
+
+		@media print {
+			body {
+				background: #fff
+			}
+
+			.site {
+				max-width: none;
+				padding: 0
+			}
+
+			.main,
+			.sidebar {
+				border: 0;
+				padding: 12px
+			}
+
+			.back,
+			.downloads {
+				display: none
+			}
+
+			.position {
+				break-inside: avoid
+			}
+
+			a {
+				color: inherit
+			}
+		}
+	</style>
 </head>
 
 <body>
-	<div style="text-align:center; margin-bottom:5px;"><a href="/" style="background-color:#BDBDBD;">back to
-			rickb.org</a></div>
-	<div class="container-fluid wrapper">
+	<div class="site"><a class="back" href="/">← back to rickb.org</a>
+		<div class="layout">
+			<main class="main">
+				<header>
+					<h1>Richard Barton</h1>
+					<p class="subtitle">Platform Architect · Azure Cloud Architecture · Technical Leadership — <a
+							href="https://www.linkedin.com/in/rick1stl/">LinkedIn Profile</a></p>
+					<p class="summary">Platform Architect and hands-on Azure engineer with 15+ years of enterprise
+						software experience, progressing from full stack development into software and cross-application
+						platform architecture. Lead Azure infrastructure and architectural direction across multiple
+						applications and teams; combine Infrastructure as Code, cloud operations, security, CI/CD, and
+						performance engineering with developer mentorship and product strategy.</p>
+					<div class="downloads">Download Options: <a href="./resume.pdf">PDF</a> <a
+							href="./resume.docx">DOCX</a></div>
+				</header>
+				<section aria-labelledby="specialty">
+					<h2 id="specialty">Specialty</h2>
+					<p>Microsoft Azure cloud architecture, platform engineering, Infrastructure as Code (ARM templates,
+						Bicep, Terraform), Azure DevOps, cloud-native applications, technical leadership, and product
+						strategy.</p>
+				</section>
+				<section aria-labelledby="employment">
+					<h2 id="employment">Employment</h2>
+					<article class="position">
+						<div class="position-heading">
+							<h3>Platform Architect</h3><span class="dates">Feb 2026–Present</span>
+						</div>
+						<h4><a href="https://www.eastman.com/">Eastman Chemical Company</a> · St. Louis, MO</h4>
+						<ul>
+							<li>Provide Azure platform architecture and technical direction across multiple enterprise
+								applications and engineering teams, expanding beyond a single-product scope.</li>
+							<li>Design and maintain Azure infrastructure using App Services, Functions, Azure SQL, Front
+								Door, Static Web Apps, and Key Vault, with attention to scalability, security, and
+								reliability.</li>
+							<li>Author and maintain Infrastructure as Code using ARM templates, Bicep, and Terraform
+								specifically for Azure, enabling standardized provisioning and repeatable deployments.
+							</li>
+							<li>Guide Azure DevOps CI/CD practices, cloud configuration, monitoring, and deployment
+								approaches across application teams.</li>
+							<li>Partner with product and engineering stakeholders on platform strategy, technical
+								priorities, architectural tradeoffs, and longer-term direction; mentor engineers and
+								promote sound design practices.</li>
+						</ul>
+					</article>
+					<article class="position">
+						<div class="position-heading">
+							<h3>Senior Software Architect</h3><span class="dates">Mar 2022–Feb 2026</span>
+						</div>
+						<h4><a href="https://www.eastman.com/">Eastman Chemical Company</a> · St. Louis, MO</h4>
+						<ul>
+							<li>Architected internal and customer-facing applications and REST APIs using Vue.js,
+								Electron, Node.js, and TypeScript, translating product requirements into maintainable
+								technical designs.</li>
+							<li>Built and supported Azure App Services and Azure Functions workloads, including Flex
+								Consumption scaling considerations and cloud application operations.</li>
+							<li>Improved observability with Azure Application Insights, diagnostics, and Kusto queries
+								to investigate production issues and application performance.</li>
+							<li>Worked with high-volume Azure SQL workloads on query optimization, indexing, statistics,
+								and database maintenance; troubleshot application performance across service and data
+								layers.</li>
+							<li>Designed Azure DevOps build/release workflows, integrated authentication with Auth0 and
+								Microsoft Entra ID patterns, and supported application security and MFA considerations.
+							</li>
+							<li>Mentored junior and mid-level developers through code reviews, pairing, and architecture
+								discussions; collaborated with product owners to influence roadmap decisions and
+								technical investments.</li>
+						</ul>
+					</article>
+					<article class="position">
+						<div class="position-heading">
+							<h3>Full Stack Web Developer</h3><span class="dates">Mar 2020–Mar 2022</span>
+						</div>
+						<h4><a href="https://www.eastman.com/">Eastman Chemical Company</a> · St. Louis, MO</h4>
+						<ul>
+							<li>Developed enterprise applications using Vue.js, Electron, Node.js, TypeScript, and API
+								integrations; contributed to reusable UI components and application modernization.</li>
+						</ul>
+					</article>
+					<article class="position compact">
+						<div class="position-heading">
+							<h3>Lead Angular Developer</h3><span class="dates">Aug 2019–Mar 2020</span>
+						</div>
+						<h4><a href="https://www.hunter.com/">Hunter Engineering Company</a> · St. Louis, MO</h4>
+						<p>Led enterprise Angular development, API integration patterns, codebase improvements, and
+							collaboration on Azure-hosted deployments.</p>
+					</article>
+					<article class="position compact">
+						<div class="position-heading">
+							<h3>Senior Software Engineer</h3><span class="dates">Nov 2018–Aug 2019</span>
+						</div>
+						<h4><a href="https://www.intercardinc.com/">Intercard</a> · St. Louis, MO</h4>
+						<p>Developed Angular/TypeScript applications and .NET Core/C# REST services; designed SQL and
+							JWT authentication patterns with dependency injection and unit testing.</p>
+					</article>
+					<article class="position compact">
+						<div class="position-heading">
+							<h3>App Developer</h3><span class="dates">Apr 2015–Nov 2018</span>
+						</div>
+						<h4><a href="https://www.maritzglobalevents.com/">Maritz Global Events</a> · St. Louis, MO</h4>
+						<p>Helped modernize a major internal application using AngularJS/TypeScript, Java/Spring REST
+							services, and SQL.</p>
+					</article>
+					<article class="position compact">
+						<div class="position-heading">
+							<h3>Web Developer</h3><span class="dates">Dec 2011–Apr 2015</span>
+						</div>
+						<h4><a href="https://fleishmanhillard.com/">Fleishmanhillard</a> · St. Louis, MO</h4>
+						<p>Built analytics dashboards and SharePoint/.NET integrations; supported Azure client sites and
+							enterprise infrastructure.</p>
+					</article>
+					<article class="position compact">
+						<div class="position-heading">
+							<h3>Network Engineer</h3><span class="dates">Nov 2010–Dec 2011</span>
+						</div>
+						<h4>Sextant Technology Partners · St. Louis, MO</h4>
+						<p>Automated deployments and upgrades; supported client networks, servers, and SharePoint
+							installations.</p>
+					</article>
+					<article class="position compact">
+						<div class="position-heading">
+							<h3>Web Developer</h3><span class="dates">Feb 2010–Nov 2010</span>
+						</div>
+						<h4>Stateamind Watersports · St. Louis, MO</h4>
+						<p>Redesigned and maintained PHP/MySQL website and inventory application.</p>
+					</article>
 
-		<!-- Heading 
-				================================================== -->
-		<div class="row-fluid heading">
-
-			<div class="span8">
-				<img class="my-picture" src="../../_rbbDev/extRefs/wrapbootstrap/resume/img/bartori_140.jpg"
-					alt="Photo of Rick Barton">
-				<h1 class="my-name">Rick Barton</h1>
-				<h2 class="my-profession">Full Stack Engineer - <a href="https://www.linkedin.com/in/rick1stl"
-						target="_blank">LinkedIn Profile</a></h2>
-				<p class="my-message">
-					<i class="icon-comment-alt"></i>&nbsp;Full Stack Engineer with 15+ years of experience designing and
-					delivering web applications that transform product vision into user value. Skilled at collaborating
-					across product, design, and engineering teams to ship features that balance usability, scalability,
-					and technical debt. Experienced in modern JavaScript/TypeScript, Node.js, Vue.js, Angular, and
-					cloud-based architectures. Hands-on expertise in Azure Cloud—including logging/monitoring, ARM
-					templates, and DevOps pipelines—to ensure secure, reliable, and scalable deployments. Recognized for
-					mentoring junior and mid-level developers, fostering collaborative team culture, and raising overall
-					code quality.
-				</p>
-			</div>
-
-			<div class="span4">
-				<div
-					style="border:1px #ccc solid; border-radius:25px; padding:5px; margin:10px 0 10px 0; text-align:center;">
-					Download Options:<br />
-					<a style="margin:0 10px 0 10px;" target="_blank" class="my-tooltip" href="./Documents/resume.pdf"
-						data-original-title="PDF">
-						<i class="icon-file"></i>
-						PDF
-					</a>
-					<a style="margin:0 10px 0 10px;" target="_blank" class="my-tooltip" href="./Documents/resume.docx"
-						data-original-title="Word Doc">
-						<i class="icon-file-alt"></i>
-						DOCX
-					</a>
-				</div>
-				<h2 class="my-services" style="margin-top:0;">
-					<i class="icon-cogs"></i>&nbsp;Specialty
-				</h2>
-				<p class="my-servicetext">
-					JavaScript, TypeScript, Node.js, Vue.js, Angular, AngularJS, Electron, .NET, SQL, and all other web
-					technologies
-				</p>
-			</div>
-
+				</section>
+				<section aria-labelledby="education">
+					<h2 id="education">Education</h2>
+					<div class="edu-item"><strong>M.S. in Information Systems</strong><span>University of Missouri – St.
+							Louis</span> <small>· December 2011</small></div>
+					<div class="edu-item"><strong>B.A. in Psychology</strong><span>University of Missouri – St.
+							Louis</span> <small>· May 2005</small></div>
+				</section>
+			</main>
+			<aside class="sidebar">
+				<section class="side-section">
+					<h2>Azure &amp; Cloud</h2><span class="skill-label">Azure Services</span>
+					<p>App Services, Azure Functions (Flex Consumption), Azure SQL, Front Door, Static Web Apps, Key
+						Vault, Application Insights, Azure DevOps</p><span class="skill-label">Infrastructure as
+						Code</span>
+					<p>Hands-on ARM templates, Azure Bicep, and Terraform for Azure provisioning, configuration, and
+						repeatable deployments</p><span class="skill-label">Engineering Practices</span>
+					<p>CI/CD, cloud observability, performance engineering, authentication, authorization, architecture
+						reviews, mentoring</p>
+				</section>
+				<section class="side-section">
+					<h2>Programming Skills</h2>
+					<p>Node.js, TypeScript, JavaScript, Vue 3, Angular, AngularJS, Electron, .NET/C#, REST APIs, SQL
+						Server, Git, PowerShell, automated testing</p>
+				</section>
+				<section class="side-section">
+					<h2>IDE and Tools</h2>
+					<p>Visual Studio, VS Code, Azure DevOps, Git, PowerShell, SQL Server tools, Kusto, Application
+						Insights</p>
+				</section>
+				<section class="side-section">
+					<h2>Internet</h2>
+					<ul>
+						<li><a href="https://rickb.org/">Website — rickb.org</a></li>
+						<li><a href="https://www.linkedin.com/in/rick1stl/">LinkedIn Profile</a></li>
+					</ul>
+				</section>
+				<section class="side-section contact">
+					<h2>Contact Me</h2>
+					<p>St. Louis, Missouri<br><a href="mailto:Rick1stlwork@gmail.com">Rick1stlwork@gmail.com</a></p>
+				</section>
+			</aside>
 		</div>
-
-		<!-- Resume 
-				================================================== -->
-		<div class="row-fluid resume">
-
-			<!-- column 1 -->
-			<div class="span4">
-				<h3 class="my-caption">Employment</h3>
-
-				<h4 class="my-activity">Senior Software Architect</h4>
-				<h5 class="my-venture"><a href="https://www.eastman.com/">Eastman Chemical Co.</a> <span>03 2022 -
-						Present</span></h5>
-				<p class="my-specifics">
-					VueJS, electron and other cool stuff.
-				</p>
-
-				<h4 class="my-activity">Full Stack Web Developer</h4>
-				<h5 class="my-venture"><a href="https://www.eastman.com/">Eastman Chemical Co.</a> <span>03 2020 -
-						Present</span></h5>
-				<p class="my-specifics">
-					VueJS, electron and other cool stuff.
-				</p>
-
-				<h4 class="my-activity">Lead Angular Developer</h4>
-				<h5 class="my-venture"><a href="https://www.hunter.com/">Hunter Engineering</a> <span>08 2019 - 03
-						2020</span></h5>
-				<p class="my-specifics">
-					Building enterprise Angular applications.
-				</p>
-
-				<h4 class="my-activity">Senior Software Engineer</h4>
-				<h5 class="my-venture"><a href="https://www.intercardinc.com/">Intercard</a> <span>11 2018 - 08
-						2019</span></h5>
-				<p class="my-specifics">
-					.NET, Angular, TypeScript, modern JavaScript, Unit Tests
-				</p>
-
-				<h4 class="my-activity">AngularJS Web Developer</h4>
-				<h5 class="my-venture"><a href="http://www.maritztravel.com/">Maritz Travel</a> <span>04 2015 - 11
-						2018</span></h5>
-				<p class="my-specifics">
-					Develop web applications using AngularJS, Node.js, Gulp, Karma tests, etc.
-				</p>
-
-				<h4 class="my-activity">Internal Applications Developer</h4>
-				<h5 class="my-venture"><a href="http://fleishmanhillard.com/">FleishmanHillard</a> <span>12 2011 - 04
-						2015</span></h5>
-				<p class="my-specifics">
-					Develop internal web applications.
-				</p>
-
-				<h4 class="my-activity">Network Engineer</h4>
-				<h5 class="my-venture"><a href="http://www.acropolistech.com/sextant/">Sextant Tech Partners</a>
-					<span>11 2010 - 12 2011</span>
-				</h5>
-				<p class="my-specifics">
-					Scripting upgrade roll-outs.
-				</p>
-
-				<h4 class="my-activity">Web Developer</h4>
-				<h5 class="my-venture"><a href="http://www.stateamind.com/">STATEAMIND WaterSports</a> <span>02 2010 -
-						11 2010</span></h5>
-				<p class="my-specifics">
-					Web developer.
-				</p>
-			</div>
-
-			<!-- column 2 -->
-			<div class="span4">
-
-				<h3 class="my-caption">Education</h3>
-				<h4 class="my-activity">M.S. in Information Systems</h4>
-				<h5 class="my-venture"><a
-						href="http://mis.umsl.edu/Alumni%20and%20Friends/alumni_directory.html#B">University of Missouri
-						- St. Louis</a><span>2010 - 2011</span></h5>
-				<h4 class="my-activity">B.A in Psychology</h4>
-				<h5 class="my-venture"><a
-						href="http://mis.umsl.edu/Alumni%20and%20Friends/alumni_directory.html#B">University of Missouri
-						- St. Louis</a><span>2002 - 2005</span></h5>
-
-
-				<h3 class="my-caption">IDE and Tools</h3>
-				<h4 class="my-skill">
-					<a href="http://www.gimp.org/">GIMP (Image Editing)</a>
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star-empty"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					Visio 2010/2013 (Diagrams)
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star-empty"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					Visual Studio 2010/2012/2013
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star-empty"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					SQL Server Mgmt 2008/2012
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star-empty"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					SharePoint Designer 2010/2013
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star-empty"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					Lync 2010/2013
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					<a href="http://curl.haxx.se/docs/faq.html#What_is_cURL">cURL</a>
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star-empty"></i>
-						<i class="icon-star-empty"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					<a href="http://notepad-plus-plus.org/">Notepad++ (Love it!)</a>
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star-empty"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					<a href="//netbeans.org/">NetBeans</a>
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star-empty"></i>
-						<i class="icon-star-empty"></i>
-						<i class="icon-star-empty"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					<a href="//code.visualstudio.com/">VScode</a>
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star-empty"></i>
-					</span>
-				</h4>
-
-			</div>
-
-			<!-- column 3 -->
-			<div class="span4">
-
-				<h3 class="my-caption">Programming Skills</h3>
-				<h4 class="my-skill">
-					HTML
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					CSS
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					TypeScript
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					JavaScript
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					Nodejs
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					XML
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star-empty"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					JQuery
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star-empty"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					<a href="http://www.telerik.com/kendo-ui">Kendo UI</a>
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star-empty"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					<a href="//angular.io/">Angular</a>
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star-empty"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					<a href="//angularjs.org/">AngularJS</a>
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star-empty"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					<a href="https://vuejs.org/">VueJS</a>
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star-empty"></i>
-						<i class="icon-star-empty"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					<a href="https://www.electronjs.org/">Electron</a>
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star-empty"></i>
-						<i class="icon-star-empty"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					Powershell
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star-empty"></i>
-						<i class="icon-star-empty"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					SQL
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star-empty"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					C#
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star-empty"></i>
-						<i class="icon-star-empty"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					ASP.NET
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star-empty"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					.NET Core
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star-empty"></i>
-						<i class="icon-star-empty"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					XAML
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star-empty"></i>
-						<i class="icon-star-empty"></i>
-						<i class="icon-star-empty"></i>
-						<i class="icon-star-empty"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					Java
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star"></i>
-						<i class="icon-star-empty"></i>
-						<i class="icon-star-empty"></i>
-						<i class="icon-star-empty"></i>
-					</span>
-				</h4>
-				<h4 class="my-skill">
-					PHP
-					<span>
-						<i class="icon-star"></i>
-						<i class="icon-star-empty"></i>
-						<i class="icon-star-empty"></i>
-						<i class="icon-star-empty"></i>
-						<i class="icon-star-empty"></i>
-					</span>
-				</h4>
-			</div>
-
-		</div>
-		<!-- end of resume -->
-
-		<!-- Contact  -->
-
-		<div class="row-fluid contact">
-
-			<!--column 1 -->
-			<div class="span4">
-
-				<h3 class="my-caption">Internet</h3>
-				<h4 class="my-info">
-					<i class="icon-globe"></i> Website
-					<span>
-						<a href="/" target="_blank">rickb.org</a>
-					</span>
-				</h4>
-				<h4 class="my-info">
-					<i class="icon-globe"></i> Blog
-					<span>
-						<a href="../blog" target="_blank">rbbDev Blog</a>
-					</span>
-				</h4>
-
-			</div>
-
-			<!--column 2 -->
-			<div class="span4">
-
-				<h3 class="my-caption">Contact Me</h3>
-				<h4 class="my-info">
-					<i class="icon-phone"></i> Phone
-					<span>314.---.----</span>
-				</h4>
-				<h4 class="my-info">
-					<i class="icon-envelope"></i> Email
-					<span>
-						<a href="mailto:rick1stlwork@gmail.com">rick1stlwork@gmail.com</a>
-					</span>
-				</h4>
-
-
-			</div>
-
-			<!--column 3 -->
-			<div class="span4">
-
-				<h3 class="my-caption">Social</h3>
-				<h4 class="my-info">
-					<i class="icon-twitter"></i>
-					<span>
-						<a href="//twitter.com/rickshub" target="_blank">rickshub</a>
-					</span>
-				</h4>
-				<h4 class="my-info">
-					<i class="icon-linkedin"></i>
-					<span>
-						<a href="https://www.linkedin.com/in/rick1stl/" target="_blank">LinkedIn</a>
-					</span>
-				</h4>
-			</div>
-
-		</div>
-
-		<h3 class="my-caption">Location</h3>
-
-		<img style="width: 100%;" src="./map.png" />
-
-		<!-- end of contact -->
-
 	</div>
-	<!-- end of container -->
-
-	<script src="../../_rbbDev/extRefs/wrapbootstrap/resume/js/jquery-1.9.1.min.js"></script>
-	<script src="../../_rbbDev/extRefs/wrapbootstrap/resume/js/jquery.masonry.min.js"></script>
-	<script src="../../_rbbDev/extRefs/wrapbootstrap/resume/js/bootstrap.min.js"></script>
-	<script src="../../_rbbDev/extRefs/wrapbootstrap/resume/js/derek.js"></script>
-
-	<script>
-
-		document.addEventListener("DOMContentLoaded", function () {
-			firebase.analytics(); // call to activate
-			firebase
-				.analytics()
-				.logEvent(`rickb-home-${new Date().toLocaleString()}`);
-		});
-
-	</script>
-
 </body>
 
 </html>
